@@ -1,0 +1,45 @@
+# In case you want to include other package managers than the ones selected,
+# uncomment them before starting the analysis 
+
+INCLUDED_PLATFORMS :
+  # - "Alcatraz"  # Package manager for XCode
+  # - Atom"  # do not include an editor for paper
+  - "Bower"  # Exclude due to webdev?
+  - "Cargo"
+  # - Carthage"  # dependencies for Cocoa applications
+  - "Clojars"  # Clojure
+  # - CocoaPods"  # dependency manager for Swift and Objective-C Cocoa
+  # - Conda"  # For the Conda Python distribution
+  - "CPAN"  # Perl
+  - "CRAN"  # R
+  - "Dub"  # D
+  - "Elm"  # Keep it?
+  # - Emacs"  # do not include an editor for paper
+  - "Go"
+  - "Hackage"  # Haskell
+  # - Haxelib"  # For the Haxe programming language
+  - "Hex"  # Erlang and Elixir package manager
+  # - Homebrew"  # Package manager for MacOS
+  # - Inqlude"  # Qt code dependency manager
+  # - Jam",  another JS package manager, excluded due to dead domain: http://www.jamjs.org/
+  - "Julia"
+  - "Maven"
+  - "Meteor"
+  - "Nimble"
+  - "NPM"
+  - "NuGet"
+  - "Packagist"  # PHP
+  # - PlatformIO"  # dependency manager for embedded development
+  - "Pub"  # Dart
+  - "Puppet"
+  # - PureScript",  does not seem to be on libraries.io anymore
+  - "Pypi"
+  - "Racket"
+  - "Rubygems"
+  # - Shards"  # Crystal package manager, below 100 packages
+  # - Sublime"  # do not include an editor for paper
+  - "SwiftPM"
+  # - Wordpress"  #
+
+# To keep the 24GB tar.gz file from libraries.io, set value to TRUE
+KEEP_ORIG_DATA: FALSE  

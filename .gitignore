@@ -1,0 +1,10 @@
+data/input/libraries-1.6.0-2020-01-12.tar.gz
+data/input/*.csv
+data/processing/*.csv
+data/processing/*.cql
+neo4j/plugins/*.jar
+__pycache__
+neo4j/data/databases/
+neo4j/data/dbms/
+neo4j/data/transactions/
+neo4j/logs/*.log
