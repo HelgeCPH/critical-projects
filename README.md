@@ -1,3 +1,12 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3626071.svg)](https://doi.org/10.5281/zenodo.3626071)
+
+
+The data source by for this project is the [libraries.io](https://libraries.io/data) project [DOI](https://doi.org/10.5281/zenodo.3626071). 
+
+Proper attribution:
+Includes data from Libraries.io, a project from Tidelift
+
+
 
 
 
@@ -6,11 +15,30 @@ The main file to run to recreate the dataset locally is in `create_db.sh`
 
 # Recreating the dataset
 
+## Requirements
+
+  * Linux/Unix OS (tested on MacOS Mojave only)
+  * Bash shell interpreter
+  * 300GB of free disk space should be enough
+  * Docker needs to be installed and setup on your system
+  * `pyenv` and `poetry` for dependency and virtual environment
+  * `wget` and `unzip` need to be installed and available on the `$PATH`
+  * Internet connection
+  * ...time... the entire process of dataset creating takes some hours
+
+## Configuration
+
+In case you are running Docker on MacOS instead of Linux, you have to increase the max amount of memory from the default 2GB:
+![](images/docker_memory_conf.png)
+
+
+## 
+
 Running the following script recreates the dataset and computes the page rank for the dependency graph:
 
 ```bash
 $ poetry shell 
-(critical-projects-kuSPJuld-py3.9) ./create_db.sh
+(critical-projects-kuSPJuld-py3.9) bash-3.2$ ./create_db.sh
 ```
 
 The script does the following:
@@ -28,11 +56,3 @@ In case you want to experiment with the dependency graph in the database, connec
 
 Note, the Docker container will store the actual database on the host machine in the directory `neo4j_data`, which will take multiple GB too. Remember to clean the data once you are done with your analysis.
 
-# Requirements
-
-  * Linux/Unix OS (tested only on MacOS Mojave)
-  * Bash shell interpreter
-  * 300GB of free disk space should be enough
-  * Docker needs to be installed and setup on your system
-  * pyenv and poetry for dependency and virtual environment
-  * wget and unzip need to be installed and available on the `$PATH
