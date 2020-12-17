@@ -34,8 +34,9 @@ echo "Generating Neo4j input data..."
 python -m critical_projects.projects_to_neo4j_csv data/input/projects-1.6.0-2020-01-12.csv > data/processing/projects_neo4j.csv
 python -m critical_projects.deps_to_neo4j_csv data/input/dependencies-1.6.0-2020-01-12.csv > data/processing/deps_neo4j.csv
 
-echo "Generating index cypher queries..."
+echo "Generating cypher queries..."
 python -m critical_projects.create_neo4j_indexes > data/processing/create_indexes.cql
+python -m critical_projects.create_neo4j_pr_comp > data/processing/compute_pagerank.cql
 
 
 echo "Setting up Neo4j DB..."
@@ -55,23 +56,36 @@ docker run \
     -v $(pwd)/data/processing:/var/lib/neo4j/import \
     -v $(pwd)/neo4j/plugins:/plugins \
     --env NEO4J_dbms_memory_heap_initial__size=1G \
-    --env NEO4J_dbms_memory_heap_max__size=8G \
+    --env NEO4J_dbms_memory_heap_max__size=1G \
     --env NEO4J_dbms_security_procedures_unrestricted=gds.\\\* \
     --env NEO4J_AUTH=neo4j/password \
     neo4j:4.2
 
 echo "Importing data..."
 docker exec depgraphneo4j neo4j stop
-# Do not connect the browser UI to the DB before this step, otherwise it will not work due to a locked DB
+sleep 2
+# Do not connect the browser UI to the DB before this step, otherwise it will not work due to a locked DB!
+# The import takes long, on a MacBook Pro 2017 with 2,9 GHz i7, it takes almost 50min.
 docker exec depgraphneo4j neo4j-admin import \
     --nodes=/var/lib/neo4j/import/projects_neo4j.csv \
     --relationships=/var/lib/neo4j/import/deps_neo4j.csv \
     --skip-bad-relationships
+sleep 20
 docker container restart depgraphneo4j
+sleep 20
 docker exec depgraphneo4j neo4j start
+sleep 20
 # Creating indexes on Names field, not sure if that is really needed but good for experimenting
 docker exec depgraphneo4j cypher-shell -u neo4j -p password -f /var/lib/neo4j/import/create_indexes.cql
 
+
+
+echo "Computing PageRank..."
+docker exec depgraphneo4j cypher-shell -u neo4j -p password -f /var/lib/neo4j/import/compute_pagerank.cql
+
+
+
+python -m critical_projects.generate_pr_reports
 
 
 # CALL dbms.listConfig("heap");

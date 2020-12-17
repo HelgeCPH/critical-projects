@@ -7,7 +7,7 @@ INCLUDED_PLATFORMS :
   # - "Bower"  # exclude, since dataset does not contain dependency relations
   - "Cargo"
   # - Carthage"  # dependencies for Cocoa applications
-  - "Clojars"  # exclude, since dataset does not contain dependency relations
+  # - "Clojars"  # exclude, since dataset does not contain dependency relations
   # - CocoaPods"  # dependency manager for Swift and Objective-C Cocoa
   # - Conda"  # For the Conda Python distribution
   - "CPAN"  # Perl
@@ -43,3 +43,5 @@ INCLUDED_PLATFORMS :
 
 # To keep the 24GB tar.gz file from libraries.io, set value to TRUE
 KEEP_ORIG_DATA: FALSE  
+
+NUMBER_OF_PROJECTS: 1000

@@ -7,3 +7,6 @@ cleandb:
 stopdb:
 	docker stop depgraphneo4j
 	docker rm depgraphneo4j
+
+wipedb: stopdb cleandb
+	
