@@ -45,3 +45,11 @@ INCLUDED_PLATFORMS :
 KEEP_ORIG_DATA: FALSE  
 
 NUMBER_OF_PROJECTS: 1000
+
+
+EXPERIMENT_PLATFORMS :
+  - "Cargo"
+  - "Maven"
+  - "NPM"
+  - "Packagist"
+  - "Pypi"

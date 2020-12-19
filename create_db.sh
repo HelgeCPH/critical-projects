@@ -10,6 +10,7 @@ then
   exit 1
 fi
 
+
 echo "The following will take some time! Go do something else..."
 echo "" 
 echo "Downloading the dataset..."
@@ -36,7 +37,6 @@ python -m critical_projects.deps_to_neo4j_csv data/input/dependencies-1.6.0-2020
 
 echo "Generating cypher queries..."
 python -m critical_projects.create_neo4j_indexes > data/processing/create_indexes.cql
-python -m critical_projects.create_neo4j_pr_comp > data/processing/compute_pagerank.cql
 
 
 echo "Setting up Neo4j DB..."
@@ -81,11 +81,19 @@ docker exec depgraphneo4j cypher-shell -u neo4j -p password -f /var/lib/neo4j/im
 
 
 echo "Computing PageRank..."
-docker exec depgraphneo4j cypher-shell -u neo4j -p password -f /var/lib/neo4j/import/compute_pagerank.cql
-
-
-
+python -m critical_projects.compute_pagerank
+# And write out the reports
 python -m critical_projects.generate_pr_reports
 
+# Get the Java and JS files from the criticality score project
+gsutil cp gs://ossf-criticality-score/j*.csv data/input
+gsutil cp gs://ossf-criticality-score/p*.csv data/input
+gsutil cp gs://ossf-criticality-score/rust_top_200.csv data/input
 
-# CALL dbms.listConfig("heap");
+
+if [[ -z "${GITHUB_AUTH_TOKEN}" ]]; then
+  echo "You need to have a $GITHUB_AUTH_TOKEN" >&2
+  exit 1
+fi
+
+python -m critical_projects.run_experiment
