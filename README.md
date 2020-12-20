@@ -1,11 +1,11 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3626071.svg)](https://doi.org/10.5281/zenodo.3626071)
-
 # TL;DR
 
   * Google's Open Source team announced [`criticality_score`](https://github.com/ossf/criticality_score/), which should capture the [_"influence and importance of a project"_](https://github.com/ossf/criticality_score/blob/4a3e3e171ac403344060dbcfc43f47944afe77d0/README.md) in an ecosystem.
   * The community disagreed if the signals of the current score appropriately identify _critical_ projects.
-  * I suggest to rely on PageRank and Truck Factor per project as signals for computation of the `criticality_score`
-  * I demonstrate, that these two signals allow to identify _critical_ projects of an ecosystem, i.e., projects on which many other projects depend transitively and which are maintained mainly by single persons, such as the [`idna`](https://github.com/kjd/idna) project from PyPI, the [``](https://github.com/) project from , or the [``](https://github.com/) project from , which are all amongst the top 20 page ranked projects with a truck factor of one each.
+  * I suggest to rely on PageRank and Truck Factor per project as signals for computation of the `criticality_score`.
+  * I demonstrate, that these two signals allow to identify _critical_ projects of an ecosystem, i.e., projects on which many other projects depend transitively and which are maintained mainly by single persons.
+  * Examples for such _critical_ projects are [`six`](https://github.com/benjaminp/six) and [`idna`](https://github.com/kjd/idna) from PyPI, [`com.typesafe:config`](https://github.com/lightbend/config) from Maven, or [`tap`](https://github.com/tapjs/node-tap) from NPM.
+  All of them have a truck factor of one and appear in the top 20 highest pageranks in their respective package manager's dependency graph. However, the current [`criticality-score`](https://github.com/ossf/criticality_score) for all of them is only around 0.5, which would indicate medium criticality.
 
 # What is this?
 
@@ -31,9 +31,9 @@ Inspired by discussions on the [project's issue tracker](https://github.com/ossf
 Here _criticality_ means -exactly as in the comic below-, that many other important (foundational) packages depend on a critical project and that the amount of corresponding maintainers is low, potentially a single person. The PageRank should rank all packages in the dependency graphs of ecosystems' package managers and the truck factors per project should be _"the number of people on your team that have to be hit by a truck (or quit) before the project is in serious trouble"_ ([L. Williams and R. Kessler, Pair Programming Illuminated](https://books.google.dk/books?hl=da&lr=&id=LRQhdlrKNE8C&oi=fnd&pg=PR17&dq=Pair+Programming+Illuminated&ots=UZhdQBMPlm&sig=k4XHx3zxA9Eafc_hWguck3VfZoA&redir_esc=y#v=onepage&q=Pair%20Programming%20Illuminated&f=false)).
 
 
-<img src="https://imgs.xkcd.com/comics/dependency_2x.png" width="20%">
+<img src="https://imgs.xkcd.com/comics/dependency_2x.png" width="50%">
 
-As discussed on HackerNews and on the issue tracker of the `criticality_score` project, it is hard to infer proper dependency information for many ecosystems. Therefore, to quickly investigate my hypothesis, I use the [libraries.io](https://libraries.io/data) [dataset ([DOI](https://doi.org/10.5281/zenodo.3626071), which is properly attributed by saying: _"Includes data from Libraries.io, a project from Tidelift"_). This dataset consists of a lot of projects from 37 package managers together with their dependencies of various versions.
+As discussed on HackerNews and on the issue tracker of the `criticality_score` project, it is hard to infer proper dependency information for many ecosystems. Therefore, to quickly investigate my hypothesis, I use the [libraries.io](https://libraries.io/data) [dataset ([DOI](https://doi.org/10.5281/zenodo.3626071). This dataset consists of a lot of projects from 37 package managers together with their dependencies of various versions.
 
 In this project, I compute the PageRanks for all packages from 15 package managers, such as NPM, Maven, Pypi, Packagist, and Cargo, see [./analysis_conf.yml](./analysis_conf.yml)). For the moment, I compute the truck factor for the twenty projects with the highest PageRanks in each of these.
 
@@ -109,6 +109,7 @@ $ poetry install
 ## Configuration
 
 In case you are running Docker on MacOS instead of Linux, you have to increase the max amount of memory from the default 2GB:
+
 <img src="images/docker_memory_conf.png" width="70%">
 
 ## Run!
@@ -136,3 +137,6 @@ In case you want to experiment with the dependency graph in the database, connec
 
 Note, the Docker container will store the actual database on the host machine in the directory `./neo4j/data`, which will take multiple GB too. Remember to clean the data once you are done with your analysis.
 
+--------
+
+_"Includes data from Libraries.io, a project from Tidelift"_: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3626071.svg)](https://doi.org/10.5281/zenodo.3626071)
