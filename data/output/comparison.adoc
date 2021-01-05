@@ -1,5 +1,11 @@
+= Results
+
+[format="csv", options="header"]
+|===
 platform,id,name,repo_url,pagerank,truckfactor,criticality_score,created_since(m),updated_since(m),contributor_count,org_count,commit_frequency(y),recent_releases_count(y),closed_issues_count(90d),updated_issues_count(90d),comment_frequency,dependents_count
 Cargo,381274,rand,https://github.com/rust-random/rand,627.581025232951,2,0.63714,127,0,224,2,4.0,13,42,50,3.8,889
 Cargo,10068,serde,https://github.com/serde-rs/serde,603.1349510893224,1,0.66121,87,0,144,7,2.3,14,22,84,1.1,7251
 Maven,370693,junit:junit,https://github.com/junit-team/junit4,2972.3763427933422,3,0.58875,245,27,210,9,0.5,1,33,45,1.6,24769
 Maven,375005,org.hamcrest:hamcrest-core,https://github.com/hamcrest/JavaHamcrest,2487.320085059371,2,0.46287,181,3,59,7,0.3,1,2,11,0.6,304
+
+|=== 

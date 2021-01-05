@@ -78,7 +78,7 @@ python-versions = "*"
 
 [[package]]
 name = "criticality-score"
-version = "1.0.4"
+version = "1.0.7"
 description = "Gives criticality score for an open source project"
 category = "main"
 optional = false
@@ -86,6 +86,7 @@ python-versions = ">=3"
 
 [package.dependencies]
 PyGithub = ">=1.53"
+python-gitlab = ">=2.5.0"
 
 [[package]]
 name = "cryptography"
@@ -127,6 +128,14 @@ wrapt = ">=1.10,<2"
 
 [package.extras]
 dev = ["tox", "bumpversion (<1)", "sphinx (<2)", "PyTest (<5)", "PyTest-Cov (<2.6)", "pytest", "pytest-cov"]
+
+[[package]]
+name = "docopt"
+version = "0.6.2"
+description = "Pythonic argument parser, that will make you smile"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "fasteners"
@@ -517,6 +526,21 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 six = ">=1.5"
 
 [[package]]
+name = "python-gitlab"
+version = "2.5.0"
+description = "Interact with GitLab API"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+requests = ">=2.22.0"
+
+[package.extras]
+autocompletion = ["argcomplete (>=1.10.0,<2)"]
+yaml = ["PyYaml (>=5.2)"]
+
+[[package]]
 name = "pytz"
 version = "2020.4"
 description = "World timezone definitions, modern and historical"
@@ -589,6 +613,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "toml"
+version = "0.10.2"
+description = "Python Library for Tom's Obvious, Minimal Language"
+category = "main"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "traitlets"
 version = "5.0.5"
 description = "Traitlets Python configuration system"
@@ -604,15 +636,17 @@ test = ["pytest"]
 
 [[package]]
 name = "truckfactor"
-version = "0.2.4"
+version = "0.2.9"
 description = " Tool to compute the truck factor of a Git repository "
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
+docopt = ">=0.6.2,<0.7.0"
 numpy = ">=1.19.4,<2.0.0"
 pandas = ">=1.1.5,<2.0.0"
+toml = ">=0.10.2,<0.11.0"
 
 [[package]]
 name = "urllib3"
@@ -722,8 +756,8 @@ crcmod = [
     {file = "crcmod-1.7.win32-py3.1.msi", hash = "sha256:50586ab48981f11e5b117523d97bb70864a2a1af246cf6e4f5c4a21ef4611cd1"},
 ]
 criticality-score = [
-    {file = "criticality_score-1.0.4-py3-none-any.whl", hash = "sha256:f0883a0dc05d9800847b01cc4e05a59f4edc3000db2d832d3b47ef0cb4764991"},
-    {file = "criticality_score-1.0.4.tar.gz", hash = "sha256:b900dddb5c63253c2b9b59356c3872adcb272224b0673b924b76b6252744eb3d"},
+    {file = "criticality_score-1.0.7-py2-none-any.whl", hash = "sha256:38e278bef49f5dd9584bef60278ff5850bbfc6a5f81d31847b4a4d55c0a8157d"},
+    {file = "criticality_score-1.0.7.tar.gz", hash = "sha256:a81b1696654443ae24d4465714525b93818db8cdbc019e831cffa078840a0145"},
 ]
 cryptography = [
     {file = "cryptography-3.3.1-cp27-cp27m-macosx_10_10_x86_64.whl", hash = "sha256:c366df0401d1ec4e548bebe8f91d55ebcc0ec3137900d214dd7aac8427ef3030"},
@@ -748,6 +782,9 @@ decorator = [
 deprecated = [
     {file = "Deprecated-1.2.10-py2.py3-none-any.whl", hash = "sha256:a766c1dccb30c5f6eb2b203f87edd1d8588847709c78589e1521d769addc8218"},
     {file = "Deprecated-1.2.10.tar.gz", hash = "sha256:525ba66fb5f90b07169fdd48b6373c18f1ee12728ca277ca44567a367d9d7f74"},
+]
+docopt = [
+    {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
 ]
 fasteners = [
     {file = "fasteners-0.16-py2.py3-none-any.whl", hash = "sha256:74b6847e0a6bb3b56c8511af8e24c40e4cf7a774dfff5b251c260ed338096a4b"},
@@ -955,6 +992,10 @@ python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
 ]
+python-gitlab = [
+    {file = "python-gitlab-2.5.0.tar.gz", hash = "sha256:68b42aafd4b620ab2534ff78a52584c7f799e4e55d5ac297eab4263066e6f74b"},
+    {file = "python_gitlab-2.5.0-py3-none-any.whl", hash = "sha256:61270e1f8ac24fe248f41834c840c6465d2e0b216493d3508d296a02960122c0"},
+]
 pytz = [
     {file = "pytz-2020.4-py2.py3-none-any.whl", hash = "sha256:5c55e189b682d420be27c6995ba6edce0c0a77dd67bfbe2ae6607134d5851ffd"},
     {file = "pytz-2020.4.tar.gz", hash = "sha256:3e6b7dd2d1e0a59084bcee14a17af60c5c562cdc16d828e8eba2e683d3a7e268"},
@@ -992,13 +1033,17 @@ six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
 ]
+toml = [
+    {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
+    {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
+]
 traitlets = [
     {file = "traitlets-5.0.5-py3-none-any.whl", hash = "sha256:69ff3f9d5351f31a7ad80443c2674b7099df13cc41fc5fa6e2f6d3b0330b0426"},
     {file = "traitlets-5.0.5.tar.gz", hash = "sha256:178f4ce988f69189f7e523337a3e11d91c786ded9360174a3d9ca83e79bc5396"},
 ]
 truckfactor = [
-    {file = "truckfactor-0.2.4-py3-none-any.whl", hash = "sha256:1a7599001388a3e76aff3b197a816d34ee5de4b56bfc2008317e7c26a11f9f36"},
-    {file = "truckfactor-0.2.4.tar.gz", hash = "sha256:eec5888b137548e8658d678f795eaf3055d3ea6335ef5005e7f8e0f90558ee48"},
+    {file = "truckfactor-0.2.9-py3-none-any.whl", hash = "sha256:1f7313388dd29a7d02ecccb692a56f073bc8acd2b6350213c959b52a81b8282f"},
+    {file = "truckfactor-0.2.9.tar.gz", hash = "sha256:12cdd84c9b3265c373b5315a44fb73e3b3464f3fe045bf48ebb5ce632764c043"},
 ]
 urllib3 = [
     {file = "urllib3-1.25.11-py2.py3-none-any.whl", hash = "sha256:f5321fbe4bf3fefa0efd0bfe7fb14e90909eb62a48ccda331726b4319897dd5e"},
