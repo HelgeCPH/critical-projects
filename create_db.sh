@@ -96,4 +96,4 @@ if [[ -z "${GITHUB_AUTH_TOKEN}" ]]; then
   exit 1
 fi
 
-python -m critical_projects.run_experiment
+./run_experiment.sh
