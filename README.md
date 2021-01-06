@@ -93,10 +93,16 @@ My computation of the truck factor might be a bit too pessimistic. That is, ther
 
   * Linux/Unix OS (tested on MacOS Mojave only)
   * Bash shell interpreter
+  * The following shell tools need to be installed and available on the `$PATH`:
+    - `wget`
+    - `unzip`
+    - `sed`
+    - `tar`
+    - `grep`
+    - `xargs`
+    - Docker needs to be installed and setup on your system, the `docker` command needs to be on `$PATH` an usable without `sudo`
+    - `poetry` (and optionally `pyenv`) for dependency and virtual environment
   * 300GB of free disk space should be enough, but perhaps more are needed (I did not check the size of the DB store)
-  * Docker needs to be installed and setup on your system
-  * `poetry` (and optionally `pyenv`) for dependency and virtual environment
-  * `wget` and `unzip` need to be installed and available on the `$PATH`
   * Internet connection
   * ...time... the entire process of dataset recreation takes some hours
 
