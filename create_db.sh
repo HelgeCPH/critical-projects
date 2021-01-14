@@ -55,8 +55,8 @@ docker run \
     -v $(pwd)/neo4j/logs:/logs \
     -v $(pwd)/data/processing:/var/lib/neo4j/import \
     -v $(pwd)/neo4j/plugins:/plugins \
-    --env NEO4J_dbms_memory_heap_initial__size=1G \
-    --env NEO4J_dbms_memory_heap_max__size=1G \
+    --env NEO4J_dbms_memory_heap_initial__size=4G \
+    --env NEO4J_dbms_memory_heap_max__size=4G \
     --env NEO4J_dbms_security_procedures_unrestricted=gds.\\\* \
     --env NEO4J_AUTH=neo4j/password \
     neo4j:4.2
