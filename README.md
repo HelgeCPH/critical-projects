@@ -1,3 +1,8 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4621650.svg)](https://doi.org/10.5281/zenodo.4621650)
+
+
+
+
 # TL;DR
 
   * Google's Open Source team announced [`criticality_score`](https://github.com/ossf/criticality_score/), which should capture the [_"influence and importance of a project"_](https://github.com/ossf/criticality_score/blob/4a3e3e171ac403344060dbcfc43f47944afe77d0/README.md) in an ecosystem.
