@@ -18,7 +18,7 @@ This project was triggered by the [announcement](https://opensource.googleblog.c
 
 Pike describes a generic formula for computing criticality of a package as a normalized weighed sum of the ratio of the logarithm of signal[s (S<sub>i</sub>)], the logarithm of the maximum of signal value and a corresponding threshold T<sub>i</sub>:
 
-https://raw.githubusercontent.com/ossf/criticality_score/main/images/formula.png
+![](https://raw.githubusercontent.com/ossf/criticality_score/main/images/formula.png)
 
 In [his paper](https://github.com/ossf/criticality_score/blob/a02c8311fbbbd5d569ebaad3106ec08532b3a10c/Quantifying_criticality_algorithm.pdf), Pike mentions as possible signals the number of package downloads or the number of its dependents. He does not provide any weights or thresholds. However, the [current implementation of the criticality score](https://github.com/ossf/criticality_score/blob/4a3e3e171ac403344060dbcfc43f47944afe77d0/criticality_score/run.py) relies on ten signals, such as, time since creation in months, time since latest update in months, average number of comments per issue over the last 90 days, etc. together with corresponding weights and thresholds.
 
