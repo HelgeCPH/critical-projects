@@ -1,18 +1,17 @@
-import os
 import csv
-from neo4j import GraphDatabase
-from critical_projects import INCLUDED_PLATFORMS, NUMBER_OF_PROJECTS
+import os
 
+from critical_projects import INCLUDED_PLATFORMS
+from neo4j import GraphDatabase
 
 uri = "neo4j://localhost:7687"
 driver = GraphDatabase.driver(uri, auth=("neo4j", "password"))
 
 
-def report(tx, platform, limit):
+def report(tx, platform):
     query = f"""MATCH (n:{platform})
     RETURN ID(n), n.Name, n.pagerank, n.RepoURL
-    ORDER BY n.pagerank DESC
-    LIMIT {limit};"""
+    ORDER BY n.pagerank DESC;"""
     result = tx.run(query)
 
     return [
@@ -25,10 +24,8 @@ def main():
 
     with driver.session() as session:
         for platform in INCLUDED_PLATFORMS:
-            result_str = session.read_transaction(
-                report, platform, NUMBER_OF_PROJECTS
-            )
-            fname = f"{platform.lower()}_top_{NUMBER_OF_PROJECTS}.csv"
+            result_str = session.read_transaction(report, platform)
+            fname = f"{platform.lower()}_pr_complete.csv"
             outfile = os.path.join("data", "output", fname)
             with open(outfile, "w") as fp:
                 csv_writer = csv.writer(fp)

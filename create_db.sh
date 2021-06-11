@@ -84,16 +84,3 @@ echo "Computing PageRank..."
 python -m critical_projects.compute_pagerank
 # And write out the reports
 python -m critical_projects.generate_pr_reports
-
-# Get the Java and JS files from the criticality score project
-gsutil cp gs://ossf-criticality-score/j*.csv data/input
-gsutil cp gs://ossf-criticality-score/p*.csv data/input
-gsutil cp gs://ossf-criticality-score/rust_top_200.csv data/input
-
-
-if [[ -z "${GITHUB_AUTH_TOKEN}" ]]; then
-  echo "You need to have a $GITHUB_AUTH_TOKEN" >&2
-  exit 1
-fi
-
-./run_experiment.sh
